@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded',() => {
     const priorityInput = document.getElementById('priority-select');
     const addTaskButton = document.querySelector('.add-task-button');
     const taskList = document.getElementById('task-list');
-    const deleteTaskButton = document.querySelector('.delete-btn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sortButtons = document.querySelectorAll('.sort-btn');
     
     
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -21,27 +22,53 @@ document.addEventListener('DOMContentLoaded',() => {
             const taskHTML = `
                 <li class="task-item" data-id="${task.id}">
                 <span class="checkbox" ><input type="checkbox" ${task.completed ? 'checked' : ''}></span>
-                <span class="task-title${task.completed?'completed':''}">${task.taskName}</span>
-                <span class="task-due-date">${task.dueDate}</span>
+                <span class="task-title ${task.completed?'completed':''}">${task.taskName}</span>
+                <span class="task-due-date ${task.completed?'completed':''}">${task.dueDate}</span>
                 <span class="task-priority ${task.priority.toLowerCase()}">${task.priority}</span>
                 <button class="edit-btn">Edit</button>
                 <button class="delete-btn">Delete</button>
                 </li>
             `
             taskListHTML += taskHTML;
-        })
+        });
     
         taskList.innerHTML = taskListHTML;
         // console.log(tasks);
     
-    }
+    };
+
+    function anotherRenderTaskList(anotherlist)
+    {
+        let taskListHTML = '';
+        anotherlist.forEach(task => {
+            console.log(task);
+            // const li = document.createElement('li');
+            // li.classList.add('task-item');
+            // li.innerHTML 
+            const taskHTML = `
+                <li class="task-item" data-id="${task.id}">
+                <span class="checkbox" ><input type="checkbox" ${task.completed ? 'checked' : ''}></span>
+                <span class="task-title ${task.completed?'completed':''}" autofill="off">${task.taskName}</span>
+                <span class="task-due-date ${task.completed?'completed':''}">${task.dueDate}</span>
+                <span class="task-priority ${task.priority.toLowerCase()}">${task.priority}</span>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+                </li>
+            `
+            taskListHTML += taskHTML;
+        });
+    
+        taskList.innerHTML = taskListHTML;
+        // console.log(tasks);
+    
+    };
 
     function deleteTask(taskId)
     {
         tasks = tasks.filter(task => task.id !== parseInt(taskId));
         localStorage.setItem('tasks',JSON.stringify(tasks));
         renderTaskList();
-    }
+    };
 
     function editTask(taskId)
     {
@@ -53,7 +80,7 @@ document.addEventListener('DOMContentLoaded',() => {
         priorityInput.value = taskToEdit.priority;
 
         deleteTask(taskId);
-    }
+    };
 
     
     addTaskButton.addEventListener('click',() => {
@@ -92,7 +119,8 @@ document.addEventListener('DOMContentLoaded',() => {
         localStorage.setItem('tasks',JSON.stringify(tasks));
         renderTaskList();
 
-    })
+    });
+
 
     taskList.addEventListener('click',(e) => {
         // const parentli = e.target.closest('li');
@@ -110,13 +138,42 @@ document.addEventListener('DOMContentLoaded',() => {
             }
         else if(e.target.type ==='checkbox')
             {
-                console.log('You got in!!!!');
+                // console.log('You got in!!!!');
                 const task = tasks.find(task => task.id === parseInt(taskId));
                 task.completed = e.target.checked;
                 localStorage.setItem('tasks',JSON.stringify(tasks));
                 renderTaskList();
             }
 
+    });
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click',() => {
+            const filter = button.dataset.filter;
+            if(filter === 'all')
+                renderTaskList();
+            else {
+                const filteredTasks = tasks.filter(task => task.completed === (filter === 'completed'));
+                anotherRenderTaskList(filteredTasks);
+            }
+        })
+    })
+
+    sortButtons.forEach(button => {
+        button.addEventListener('click',() => {
+            const tasks2 = tasks.filter(task => task.taskName !== '' );
+            console.log(tasks2);
+            const criteria = button.dataset.filter;
+            if(criteria === 'priority')
+                {
+                    tasks2.sort((a,b) => a.priority.localeCompare(b.priority));
+                    anotherRenderTaskList(tasks2);
+                }
+            else{
+                    tasks2.sort((a,b)=> Date.parse(a.dueDate) - Date.parse(b.dueDate));
+                    anotherRenderTaskList(tasks2);
+            }
+        })
     })
 
 
