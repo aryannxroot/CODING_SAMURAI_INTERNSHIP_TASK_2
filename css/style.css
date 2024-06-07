@@ -127,3 +127,51 @@ body{
         color: #ffffffe1;
         transform: scale(1.1) perspective(1px) translateZ(0);
     }
+
+ul#task-list{
+    /* border : 2px solid red; */
+    list-style: none;
+    padding: 2px;
+}
+
+ul#task-list li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border : none;
+    border-radius: 10px;
+    background-color: #36393f;
+    padding: 20px;
+    margin-bottom: 10px;
+    color: aliceblue;
+    transition: all 0.5 ease;
+    animation: pop-in 0.5s ease;
+}
+@keyframes pop-in {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+ul#task-list li:hover {
+    background-color: #44474d;
+    transform: translateY(-5px);
+}
+
+/* Priority Colors */
+.low {
+    color: #ecf32a;
+}
+
+.medium {
+    color: #f09124;
+}
+
+.high {
+    color: #e93c28;
+}
