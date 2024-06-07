@@ -1,4 +1,4 @@
-// document.addEventListener('DOMContentLoaded',() => {
+document.addEventListener('DOMContentLoaded',() => {
     
     const taskNameInput = document.getElementById('task-input-field');
     const dueDateInput = document.getElementById('task-input-date');
@@ -20,8 +20,8 @@
             // li.innerHTML 
             const taskHTML = `
                 <li class="task-item" data-id="${task.id}">
-                <span class="checkbox"><input type="checkbox"></span>
-                <span class="task-title">${task.taskName}</span>
+                <span class="checkbox" ><input type="checkbox" ${task.completed ? 'checked' : ''}></span>
+                <span class="task-title${task.completed?'completed':''}">${task.taskName}</span>
                 <span class="task-due-date">${task.dueDate}</span>
                 <span class="task-priority ${task.priority.toLowerCase()}">${task.priority}</span>
                 <button class="edit-btn">Edit</button>
@@ -32,7 +32,7 @@
         })
     
         taskList.innerHTML = taskListHTML;
-        console.log(tasks);
+        // console.log(tasks);
     
     }
 
@@ -98,21 +98,23 @@
         // const parentli = e.target.closest('li');
         // const taskid = parentli.getAttribute('data-id');
         const targetli = e.target;
+        const taskId = targetli.closest('li').dataset.id;
 
         if(e.target.classList.contains('delete-btn'))
             {
-                const taskId = targetli.closest('li').dataset.id;
                 deleteTask(taskId);
             }
         else if(e.target.classList.contains('edit-btn'))
             {
-                const taskId = targetli.closest('li').dataset.id;
-                editTask(taskId);
-                
+                editTask(taskId);    
             }
-        else if(e.target.classList.contains('checkbox'))
+        else if(e.target.type ==='checkbox')
             {
-
+                console.log('You got in!!!!');
+                const task = tasks.find(task => task.id === parseInt(taskId));
+                task.completed = e.target.checked;
+                localStorage.setItem('tasks',JSON.stringify(tasks));
+                renderTaskList();
             }
 
     })
@@ -120,5 +122,5 @@
 
 renderTaskList();
 
-// });
+});
 
