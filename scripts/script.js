@@ -15,10 +15,7 @@ document.addEventListener('DOMContentLoaded',() => {
     {
         let taskListHTML = '';
         tasks.forEach(task => {
-            console.log(task);
-            // const li = document.createElement('li');
-            // li.classList.add('task-item');
-            // li.innerHTML 
+            console.log(task); 
             const taskHTML = `
                 <li class="task-item" data-id="${task.id}">
                 <span class="checkbox" ><input type="checkbox" ${task.completed ? 'checked' : ''}></span>
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded',() => {
         });
     
         taskList.innerHTML = taskListHTML;
-        // console.log(tasks);
     
     };
 
@@ -42,9 +38,6 @@ document.addEventListener('DOMContentLoaded',() => {
         let taskListHTML = '';
         anotherlist.forEach(task => {
             console.log(task);
-            // const li = document.createElement('li');
-            // li.classList.add('task-item');
-            // li.innerHTML 
             const taskHTML = `
                 <li class="task-item" data-id="${task.id}">
                 <span class="checkbox" ><input type="checkbox" ${task.completed ? 'checked' : ''}></span>
@@ -59,7 +52,6 @@ document.addEventListener('DOMContentLoaded',() => {
         });
     
         taskList.innerHTML = taskListHTML;
-        // console.log(tasks);
     
     };
 
@@ -88,8 +80,6 @@ document.addEventListener('DOMContentLoaded',() => {
         const taskName = taskNameInput.value;
         const dueDate = dueDateInput.value;
         const priority = priorityInput.value;
-        
-        // console.log('clicked');
 
         if((taskName === '' || dueDate === ''))
             {
@@ -123,8 +113,6 @@ document.addEventListener('DOMContentLoaded',() => {
 
 
     taskList.addEventListener('click',(e) => {
-        // const parentli = e.target.closest('li');
-        // const taskid = parentli.getAttribute('data-id');
         const targetli = e.target;
         const taskId = targetli.closest('li').dataset.id;
 
