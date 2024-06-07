@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list app</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>To Do List </title>
 </head>
 <body>
-    <h1>To DO List App by Kira</h1>
+    <div class="container">
+        <header>
+            <h1>To-Do List</h1>
+        </header>
+        <main>
+            <div class="task-input">
+                <input type="text" id="task-input-field" placeholder="Add a new Task....">
+                <input type="date" id="task-input-date">
+                <select id="priorirty-select">
+                    <option value="Low" selected>Low</option>
+                    <option value="Medium" >Medium</option>
+                    <option value="High" >High</option>
+                </select>
+                <button>Add Task</button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn">All</button>
+                <button class="filter-btn">Pending</button>
+                <button class="filter-btn">Completed</button>
+                <button class="filter-btn">Sort by</button>
+                <button class="filter-btn">Sort by priority</button>
+            </div>
+
+            <div class="task-list">
+                <ul id="task-list">
+                    <!-- Tasks will be added here -->
+                </ul>
+            </div>
+
+        
+        </main>
+    </div>
 </body>
 </html>
