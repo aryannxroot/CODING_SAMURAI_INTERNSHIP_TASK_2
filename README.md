@@ -74,7 +74,7 @@ Aryan (@aryannxroot)
 
 
 ### License
-This project is licensed under the MIT License.You can check here[MIT LICENSE](./LICENSE).
+This project is licensed under the MIT License.You can check here. [MIT LICENSE](./LICENSE).
 
 ### Contact
 For any queries feel free to contact pal97117@gmail.com
