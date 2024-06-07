@@ -16,12 +16,12 @@
             <div class="task-input">
                 <input type="text" id="task-input-field" placeholder="Add a new Task....">
                 <input type="date" id="task-input-date">
-                <select id="priorirty-select">
-                    <option value="Low" selected>Low</option>
+                <select id="priority-select">
+                    <option value="Low" >Low</option>
                     <option value="Medium" >Medium</option>
                     <option value="High" >High</option>
                 </select>
-                <button>Add Task</button>
+                <button class="add-task-button">Add Task</button>
             </div>
 
             <div class="filters">
@@ -32,14 +32,14 @@
                 <button class="filter-btn">Sort by priority</button>
             </div>
 
-            <div class="task-list">
-                <ul id="task-list">
-                    <!-- Tasks will be added here -->
-                </ul>
-            </div>
+            <ul id="task-list">
+                <!-- Tasks will be added here -->
+            </ul>
+        
 
         
         </main>
     </div>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
