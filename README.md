@@ -51,11 +51,11 @@ Ensured the application is responsive and works well on various screen sizes.
    ```bash
    git clone https://github.com/your-username/todo-list-web-app.git
 
-2. **Clone the repository:**
+2. **Change to the project directory**
    ```bash
    cd todo-list-web-app
 
-3. **Clone the repository:**
+3. **Open with live server**
    ```bash
    open index.html with live-server extension
 
